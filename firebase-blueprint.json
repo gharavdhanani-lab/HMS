@@ -1,0 +1,92 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Base user profile",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string" },
+        "avatar": { "type": "string" }
+      },
+      "required": ["name", "email", "role"]
+    },
+    "Patient": {
+      "title": "Patient",
+      "description": "Patient details",
+      "type": "object",
+      "properties": {
+        "uhid": { "type": "string" },
+        "age": { "type": "number" },
+        "gender": { "type": "string" },
+        "bloodGroup": { "type": "string" },
+        "phone": { "type": "string" }
+      },
+      "required": ["uhid", "age", "gender", "bloodGroup", "phone"]
+    },
+    "Doctor": {
+      "title": "Doctor",
+      "description": "Doctor details",
+      "type": "object",
+      "properties": {
+        "department": { "type": "string" },
+        "specialization": { "type": "string" },
+        "experience": { "type": "number" },
+        "rating": { "type": "number" },
+        "fee": { "type": "number" }
+      },
+      "required": ["department", "specialization", "experience", "fee"]
+    },
+    "Appointment": {
+      "title": "Appointment",
+      "description": "Appointment record",
+      "type": "object",
+      "properties": {
+        "patientId": { "type": "string" },
+        "doctorId": { "type": "string" },
+        "date": { "type": "string" },
+        "time": { "type": "string" },
+        "status": { "type": "string" },
+        "type": { "type": "string" },
+        "token": { "type": "string" }
+      },
+      "required": ["patientId", "doctorId", "date", "time", "status", "type"]
+    },
+    "Bed": {
+      "title": "Bed",
+      "description": "Hospital bed",
+      "type": "object",
+      "properties": {
+        "number": { "type": "string" },
+        "ward": { "type": "string" },
+        "type": { "type": "string" },
+        "status": { "type": "string" },
+        "patientId": { "type": "string" }
+      },
+      "required": ["number", "ward", "type", "status"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "System users including all roles"
+    },
+    "/patients/{patientId}": {
+      "schema": { "$ref": "#/entities/Patient" },
+      "description": "Patients"
+    },
+    "/doctors/{doctorId}": {
+      "schema": { "$ref": "#/entities/Doctor" },
+      "description": "Doctors"
+    },
+    "/appointments/{appointmentId}": {
+      "schema": { "$ref": "#/entities/Appointment" },
+      "description": "Appointments"
+    },
+    "/beds/{bedId}": {
+      "schema": { "$ref": "#/entities/Bed" },
+      "description": "Beds"
+    }
+  }
+}
